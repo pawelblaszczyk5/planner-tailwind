@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { Button as RacButton } from "react-aria-components";
 
-import type { Variants } from "#/utils/css";
+import type { VariantProps } from "#/utils/classnames";
 
 import { cva } from "#/utils/classnames";
 
@@ -21,7 +21,7 @@ export const Button = ({
 	className,
 	variant = "base",
 	...props
-}: ComponentPropsWithoutRef<typeof RacButton> & Variants<typeof button>) => (
+}: ComponentPropsWithoutRef<typeof RacButton> & VariantProps<typeof button>) => (
 	<RacButton
 		className={values => {
 			const overrides = typeof className === "function" ? className(values) : className;
