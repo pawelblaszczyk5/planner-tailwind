@@ -35,15 +35,25 @@ export const Component = () => {
 					</main>
 					<ScrollRestoration />
 					<footer className="mt-auto text-center text-sm text-sand-11">
-						<Link className="underline" to="/">
+						<Link
+							className="rounded-sm underline outline-2 outline-offset-2 outline-blue-8 focus-visible:outline"
+							to="/"
+						>
 							Home
 						</Link>{" "}
 						|{" "}
-						<Link className="underline" to="/info">
+						<Link
+							className="rounded-sm underline outline-2 outline-offset-2 outline-blue-8 focus-visible:outline"
+							to="/info"
+						>
 							Info
 						</Link>{" "}
 						|{" "}
-						<a className="underline" href="https://example.com" rel="noreferrer">
+						<a
+							className="rounded-sm underline outline-2 outline-offset-2 outline-blue-8 focus-visible:outline"
+							href="https://example.com"
+							rel="noreferrer"
+						>
 							Tokenami&nbsp;version
 						</a>
 					</footer>
