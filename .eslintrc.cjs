@@ -293,7 +293,7 @@ module.exports = {
 		"plugin:jsx-a11y/strict",
 		"prettier",
 	],
-	ignorePatterns: ["dist", "!.tokenami"],
+	ignorePatterns: ["dist"],
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
 		project: ["tsconfig.json", "tsconfig.node.json", "tsconfig.ci.json"],

@@ -6,7 +6,6 @@ import { router } from "#/lib/router";
 import { invariant } from "#/utils/invariant";
 
 import "#/main.css";
-import "#/tokenami.css";
 
 const rootElement = document.querySelector("#root");
 
