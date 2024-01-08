@@ -51,7 +51,7 @@ export const Component = () => {
 						|{" "}
 						<a
 							className="rounded-sm underline outline-2 outline-offset-2 outline-blue-8 focus-visible:outline"
-							href="https://example.com"
+							href="https://planner-tokenami.vercel.app/"
 							rel="noreferrer"
 						>
 							Tokenami&nbsp;version
