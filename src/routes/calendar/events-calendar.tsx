@@ -25,6 +25,7 @@ import { Button } from "#/components/ui/button";
 import { Dialog, DialogTrigger, Modal, ModalOverlay } from "#/components/ui/dialog";
 import { addEventDeletionNotification } from "#/components/ui/toast";
 import { deleteEvent, restoreEvent, useEventsCountForDate, useEventsForDate } from "#/lib/data";
+import { cx } from "#/utils/classnames";
 import {
 	convertCalendarDateToDate,
 	convertIsoStringToZonedDateTime,
@@ -33,29 +34,10 @@ import {
 } from "#/utils/date";
 
 const HeaderRow = () => (
-	<CalendarGridHeader style={{ "--min-height": 8 }}>
+	<CalendarGridHeader className="min-h-8">
 		{day => (
-			<CalendarHeaderCell
-				style={{
-					"--width": "var(---, calc(100% / 7))",
-				}}
-			>
-				<span
-					style={{
-						"--align-items": "center",
-						"--color": "var(--color_orange-12)",
-						"--display": "flex",
-						"--font-size": "var(--font-size_xs)",
-						"--font-weight": "var(--weight_semibold)",
-						"--justify-content": "flex-end",
-						"--m": 0.75,
-						"--min-height": 8,
-						"--p": 2,
-						"--xs_font-size": "var(--font-size_base)",
-						"--xs_m": 1.5,
-						"--xs_p": 2.5,
-					}}
-				>
+			<CalendarHeaderCell className="w-[calc(100%/7)]">
+				<span className="m-[3px] flex min-h-8 items-center justify-end p-2 text-xs font-semibold text-orange-12 xs:m-1.5 xs:p-2.5 xs:text-base">
 					{day}
 				</span>
 			</CalendarHeaderCell>
@@ -68,64 +50,20 @@ const DayCell = ({ date }: { date: CalendarDate }) => {
 
 	return (
 		<CalendarCell
-			style={{
-				"--border-radius": "var(--radii_md)",
-				"--display": "flex",
-				"--flex-direction": "column",
-				"--m": 0.75,
-				"--min-height": 16,
-				"--p": 2,
-				"--position": "relative",
-				"--rac-focus-visible_outline-color": "var(--color_blue-8)",
-				"--rac-focus-visible_outline-offset": 0.25,
-				"--rac-focus-visible_outline-style": "var(--line-style_solid)",
-				"--rac-focus-visible_outline-width": 0.5,
-				"--rac-hover_background-color": "var(--color_sand-4)",
-				"--rac-outside-month_color": "var(--color_sand-10)",
-				"--rac-selected_background-color": "var(--color_orange-5)",
-				"--transition-duration": "var(--transition-duration_150)",
-				"--transition-property": "background-color",
-				"--transition-timing-function": "var(--transition-timing-function_ease-in-out)",
-				"--xs_m": 1.5,
-				"--xs_p": 2.5,
-				"--xs_rac-focus-visible_outline-offset": 0.75,
-				...(date.toDate("utc").getDay() % 6 === 0 && {
-					"--background-color": "var(--color_sand-2)",
-				}),
-			}}
+			className={cx(
+				"m-[3px] flex min-h-16 flex-col rounded-md p-2 outline-none outline-offset-1 transition-colors rac-outside-month:text-sand-10 rac-hover:bg-sand-4 rac-focus-visible:outline-2 rac-focus-visible:outline-blue-8 rac-selected:bg-orange-5 xs:m-1.5 xs:p-2.5 xs:outline-offset-4",
+				date.toDate("utc").getDay() % 6 === 0 && "bg-sand-2",
+			)}
 			date={date}
 		>
 			{({ formattedDate }) => (
 				<>
-					<span
-						style={{
-							"--font-size": "var(--font-size_sm)",
-							"--text-align": "right",
-							"--xs_font-size": "var(--font-size_lg)",
-						}}
-					>
-						{formattedDate}
-					</span>
+					<span className="text-right text-sm xs:text-lg">{formattedDate}</span>
 					{eventsForDate > 0 && (
-						<div
-							style={{
-								"--align-items": "center",
-								"--display": "flex",
-								"--mt": "var(---, auto)",
-							}}
-						>
+						<div className="mt-auto flex items-center">
 							{/* TODO: Indicate somehow that ther're more events */}
 							{Array.from({ length: Math.min(eventsForDate, 4) }).map((_, index) => (
-								<span
-									style={{
-										"--background-color": "var(--color_orange-9)",
-										"--border-radius": "var(--radii_full)",
-										"--height": 2,
-										"--mr": -0.75,
-										"--width": 2,
-									}}
-									key={index}
-								/>
+								<span className="mr-[-3px] h-2 w-2 rounded-full bg-orange-9" key={index} />
 							))}
 						</div>
 					)}
@@ -136,17 +74,11 @@ const DayCell = ({ date }: { date: CalendarDate }) => {
 };
 
 const Header = () => (
-	<header style={{ "--align-items": "center", "--display": "flex", "--justify-content": "space-between" }}>
+	<header className="flex items-center justify-between">
 		<Button slot="previous" variant="muted">
 			<TablerArrowBigLeft />
 		</Button>
-		<Heading
-			style={{
-				"--color": "var(--color_orange-12)",
-				"--font-size": "var(--font-size_xl)",
-				"--font-weight": "var(--weight_semibold)",
-			}}
-		/>
+		<Heading className="text-xl font-semibold text-orange-12" />
 		<Button slot="next" variant="muted">
 			<TablerArrowBigRight />
 		</Button>
@@ -163,13 +95,8 @@ const Calendar = ({ date, onDateChange }: { date: CalendarDate; onDateChange: (d
 
 	return (
 		<RacCalendar
-			style={{
-				"--display": "flex",
-				"--flex-direction": "column",
-				"--gap": 4,
-				"--width": "var(---, 100%)",
-			}}
 			aria-label="Events"
+			className="flex w-full flex-col gap-4"
 			defaultFocusedValue={date}
 			focusedValue={focusedDate}
 			onChange={onDateChange}
@@ -177,12 +104,7 @@ const Calendar = ({ date, onDateChange }: { date: CalendarDate; onDateChange: (d
 			value={date}
 		>
 			<Header />
-			<CalendarGrid
-				style={{
-					"--table-layout": "fixed",
-				}}
-				weekdayStyle="short"
-			>
+			<CalendarGrid className="table-fixed" weekdayStyle="short">
 				<HeaderRow />
 				<CalendarGridBody>{date => <DayCell date={date} />}</CalendarGridBody>
 			</CalendarGrid>
@@ -208,31 +130,16 @@ const Event = ({ event }: { event: EventEntry }) => {
 	};
 
 	return (
-		<li style={{ "--display": "flex", "--flex-direction": "column", "--gap": 4 }}>
-			<div
-				style={{
-					"--align-items": "center",
-					"--display": "flex",
-					"--flex-wrap": "wrap",
-					"--gap": 3,
-					"--justify-content": "space-between",
-				}}
-			>
-				<h3 style={{ "--font-size": "var(--font-size_2xl)", "--font-weight": "var(--weight_medium)" }}>{event.name}</h3>
+		<li className="flex flex-col gap-4">
+			<div className="flex flex-wrap items-center justify-between gap-3">
+				<h3 className="text-2xl font-medium">{event.name}</h3>
 				<p>
 					{formatter.format(convertIsoStringToZonedDateTime(event.startDate).toDate())} -{" "}
 					{formatter.format(convertIsoStringToZonedDateTime(event.endDate).toDate())}
 				</p>
 			</div>
 			<p>{event.description}</p>
-			<div
-				style={{
-					"--align-items": "center",
-					"--display": "flex",
-					"--gap": 3,
-					"--justify-content": "flex-end",
-				}}
-			>
+			<div className="flex items-center justify-end gap-3">
 				<Button onPress={handleEventDelete} variant="negative">
 					Delete event <TablerTrash />
 				</Button>
@@ -264,57 +171,29 @@ const List = ({ date }: { date: CalendarDate }) => {
 	};
 
 	return (
-		<div
-			style={{
-				"--display": "flex",
-				"--flex-direction": "column",
-				"--gap": 8,
-				"--width": "var(---, 100%)",
-			}}
-		>
-			<div
-				style={{
-					"--align-items": "center",
-					"--display": "flex",
-					"--gap": 3,
-					"--justify-content": "space-between",
-				}}
-			>
-				<h2
-					style={{
-						"--font-size": "var(--font-size_2xl)",
-						"--font-weight": "var(--weight_semibold)",
-						"--xs_font-size": "var(--font-size_3xl)",
-					}}
-				>
+		<div className="flex w-full flex-col gap-8">
+			<div className="flex items-center justify-between gap-3">
+				<h2 className="text-2xl font-semibold xs:text-3xl">
 					Events for {formatter.format(convertCalendarDateToDate(date))}
 				</h2>
-				<Button onPress={navigateToToday} style={{ "--white-space": "nowrap" }} variant="muted">
+				<Button className="whitespace-nowrap" onPress={navigateToToday} variant="muted">
 					Go to today
 					<TablerCalendar />
 				</Button>
 			</div>
 			{eventsForDate.length > 0 ? (
-				<ul style={{ "--display": "flex", "--flex-direction": "column", "--gap": 4 }}>
+				<ul className="flex flex-col gap-4">
 					{eventsForDate.map(event => (
 						<Event event={event} key={event.id} />
 					))}
 				</ul>
 			) : (
-				<p style={{ "--color": "var(--color_sand-11)" }}>No events for selected date</p>
+				<p className="text-sand-11">No events for selected date</p>
 			)}
 			{eventsFromFuture.length > 0 && (
 				<>
-					<h2
-						style={{
-							"--font-size": "var(--font-size_2xl)",
-							"--font-weight": "var(--weight_semibold)",
-							"--xs_font-size": "var(--font-size_3xl)",
-						}}
-					>
-						Events for near future
-					</h2>
-					<ul style={{ "--display": "flex", "--flex-direction": "column", "--gap": 4 }}>
+					<h2 className="text-2xl font-semibold xs:text-3xl">Events for near future</h2>
+					<ul className="flex flex-col gap-4">
 						{eventsFromFuture.map(event => (
 							<Event event={event} key={event.id} />
 						))}
@@ -356,13 +235,7 @@ export const EventsCalendar = () => {
 	};
 
 	return (
-		<div
-			style={{
-				"--display": "flex",
-				"--flex-direction": "column",
-				"--gap": 8,
-			}}
-		>
+		<div className="flex flex-col gap-8">
 			<Calendar date={date} onDateChange={navigateToDate} />
 			<List date={date} />
 		</div>

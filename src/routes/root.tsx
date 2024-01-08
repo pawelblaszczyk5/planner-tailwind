@@ -12,29 +12,11 @@ export const Component = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div
-			style={{
-				"--display": "flex",
-				"--flex-direction": "column",
-				"--gap": 8,
-				"--max-width": 360,
-				"--min-height": "var(---, 100dvh)",
-				"--mx": "var(---, auto)",
-				"--p": 2,
-				"--py": 3,
-				"--xs_p": 4,
-			}}
-		>
+		<div className="mx-auto flex min-h-[100dvh] max-w-[1440px] flex-col gap-8 p-2 py-3 xs:p-4">
 			<RouterProvider navigate={navigate}>
 				<I18nProvider locale="en-US">
 					<ToastRegion />
-					<header
-						style={{
-							"--align-items": "center",
-							"--display": "flex",
-							"--justify-content": "space-between",
-						}}
-					>
+					<header className="flex items-center justify-between">
 						<Logo />
 						<DialogTrigger>
 							<Button>
@@ -52,24 +34,17 @@ export const Component = () => {
 						<Outlet />
 					</main>
 					<ScrollRestoration />
-					<footer
-						style={{
-							"--color": "var(--color_sand-11)",
-							"--font-size": "var(--font-size_sm)",
-							"--mt": "var(---, auto)",
-							"--text-align": "center",
-						}}
-					>
-						<Link style={{ "--text-decoration": "underline" }} to="/">
+					<footer className="mt-auto text-center text-sm text-sand-11">
+						<Link className="underline" to="/">
 							Home
 						</Link>{" "}
 						|{" "}
-						<Link style={{ "--text-decoration": "underline" }} to="/info">
+						<Link className="underline" to="/info">
 							Info
 						</Link>{" "}
 						|{" "}
-						<a href="https://example.com" rel="noreferrer" style={{ "--text-decoration": "underline" }}>
-							Tailwind&nbsp;version
+						<a className="underline" href="https://example.com" rel="noreferrer">
+							Tokenami&nbsp;version
 						</a>
 					</footer>
 				</I18nProvider>

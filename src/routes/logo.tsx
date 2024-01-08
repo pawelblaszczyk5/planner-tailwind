@@ -37,11 +37,7 @@ export const Logo = () => {
 
 	return (
 		<Button aria-label="Generate mock data" onPress={handlePress}>
-			<FluentEmojiCalendar
-				style={{
-					"--font-size": "var(--font-size_4xl)",
-				}}
-			/>
+			<FluentEmojiCalendar className="text-4xl" />
 		</Button>
 	);
 };

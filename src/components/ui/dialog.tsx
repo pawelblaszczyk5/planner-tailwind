@@ -2,70 +2,37 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { Dialog as RacDialog, Modal as RacModal, ModalOverlay as RacModalOverlay } from "react-aria-components";
 
-import { mergeCss } from "#/utils/css";
+import { cx } from "#/utils/classnames";
 
-export const Modal = ({ style, ...props }: ComponentPropsWithoutRef<typeof RacModal>) => (
+export const Modal = ({ className, ...props }: ComponentPropsWithoutRef<typeof RacModal>) => (
 	<RacModal
-		style={values => {
-			const overrides = typeof style === "function" ? style(values) : style;
+		className={values => {
+			const overrides = typeof className === "function" ? className(values) : className;
 
-			return mergeCss(
-				{
-					"--display": "grid",
-					"--left": "var(---, 50%)",
-					"--place-items": "center",
-					"--position": "absolute",
-					"--px": 4,
-					"--top": 16,
-					"--transform": "translateX(-50%)",
-					"--width": "var(---, 100%)",
-					"--xs_px": 8,
-				},
-				overrides,
-			);
+			return cx("absolute left-1/2 top-16 grid w-full -translate-x-1/2 place-items-center px-4 xs:px-8", overrides);
 		}}
 		{...props}
 	/>
 );
 
 export const ModalOverlay = ({
+	className,
 	isDismissable = true,
-	style,
 	...props
 }: ComponentPropsWithoutRef<typeof RacModalOverlay>) => (
 	<RacModalOverlay
-		style={values => {
-			const overrides = typeof style === "function" ? style(values) : style;
+		className={values => {
+			const overrides = typeof className === "function" ? className(values) : className;
 
-			return mergeCss(
-				{
-					"--background-color": "var(--color_black-a10)",
-					"--inset": 0,
-					"--position": "absolute",
-					"--z-index": "var(--z_10)",
-				},
-				overrides,
-			);
+			return cx("absolute inset-0 z-10 bg-black/80", overrides);
 		}}
 		isDismissable={isDismissable}
 		{...props}
 	/>
 );
 
-export const Dialog = ({ style, ...props }: ComponentPropsWithoutRef<typeof RacDialog>) => (
-	<RacDialog
-		style={mergeCss(
-			{
-				"--background-color": "var(--color_sand-2)",
-				"--border-radius": "var(--radii_md)",
-				"--max-width": 150,
-				"--p": 6,
-				"--width": "var(---, 100%)",
-			},
-			style,
-		)}
-		{...props}
-	/>
+export const Dialog = ({ className, ...props }: ComponentPropsWithoutRef<typeof RacDialog>) => (
+	<RacDialog className={cx("w-full max-w-[600px] rounded-md bg-sand-2 p-6 outline-none", className)} {...props} />
 );
 
 export { DialogTrigger } from "react-aria-components";
