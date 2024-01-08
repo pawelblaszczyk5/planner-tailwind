@@ -1,0 +1,23 @@
+{
+	"cSpell.words": [
+		"csstype",
+		"Customizer",
+		"datetime",
+		"Dexie",
+		"fontsource",
+		"linebreak",
+		"plusplus",
+		"svgr",
+		"tabler",
+		"tailwindcss",
+		"taze",
+		"tokenami",
+		"unplugin"
+	],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"tailwindCSS.experimental.classRegex": [
+		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["cx\\(([\\s\\S]*?)\\)", "'([^']*)'"],
+		["tw`([\\s\\S]*?)`"]
+	]
+}
