@@ -3,7 +3,7 @@ import racPlugin from "tailwindcss-react-aria-components";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "!./src/lib/benchmark.ts"],
 	experimental: {
 		optimizeUniversalDefaults: true,
 	},
