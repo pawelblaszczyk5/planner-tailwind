@@ -57,7 +57,7 @@ export const ToastRegion = () => {
 	return state.visibleToasts.length > 0
 		? createPortal(
 				<div
-					className="absolute bottom-4 right-4 z-20 flex w-full max-w-[min(calc(100vw-32px),24rem)] flex-col gap-4 outline-offset-2 outline-blue-8 rac-focus-visible:outline-2"
+					className="fixed bottom-4 right-4 z-20 flex w-full max-w-[min(calc(100vw-32px),24rem)] flex-col gap-4 outline-offset-2 outline-blue-8 rac-focus-visible:outline-2"
 					{...regionProps}
 				>
 					{state.visibleToasts.map(toast => (

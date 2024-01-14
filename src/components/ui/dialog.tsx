@@ -9,7 +9,7 @@ export const Modal = ({ className, ...props }: ComponentPropsWithoutRef<typeof R
 		className={values => {
 			const overrides = typeof className === "function" ? className(values) : className;
 
-			return cx("absolute left-1/2 top-16 grid w-full -translate-x-1/2 place-items-center px-4 xs:px-8", overrides);
+			return cx("fixed left-1/2 top-16 grid w-full -translate-x-1/2 place-items-center px-4 xs:px-8", overrides);
 		}}
 		{...props}
 	/>
@@ -24,7 +24,7 @@ export const ModalOverlay = ({
 		className={values => {
 			const overrides = typeof className === "function" ? className(values) : className;
 
-			return cx("absolute inset-0 z-10 bg-black/80", overrides);
+			return cx("fixed inset-0 z-10 bg-black/80", overrides);
 		}}
 		isDismissable={isDismissable}
 		{...props}
