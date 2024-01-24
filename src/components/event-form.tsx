@@ -26,7 +26,7 @@ import { invariant } from "#/utils/invariant";
 
 const fieldClassNames = tw`flex flex-col gap-1.5`;
 
-const inputClassNames = tw`rounded border border-orange-7 bg-sand-1 px-2.5 py-2 text-sm outline-2 outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-8 rac-invalid:border-red-7`;
+const inputClassNames = tw`rounded border border-orange-7 bg-sand-1 px-2.5 py-2 text-base outline-2 outline-offset-2 focus:outline focus:outline-2 focus:outline-blue-8 rac-invalid:border-red-7`;
 
 const Label = ({ children }: { children: ReactNode }) => (
 	<RacLabel className="text-sm font-medium">{children}</RacLabel>
