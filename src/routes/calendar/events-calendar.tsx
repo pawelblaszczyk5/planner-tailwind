@@ -63,7 +63,7 @@ const DayCell = ({ date }: { date: CalendarDate }) => {
 						<div className="mt-auto flex items-center">
 							{/* TODO: Indicate somehow that ther're more events */}
 							{Array.from({ length: Math.min(eventsForDate, 4) }).map((_, index) => (
-								<span className="mr-[-3px] h-2 w-2 rounded-full bg-orange-9" key={index} />
+								<span className="mr-[-3px] size-2 rounded-full bg-orange-9" key={index} />
 							))}
 						</div>
 					)}
